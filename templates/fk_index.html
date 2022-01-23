@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<title>Fake News Detector</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.mySlides {display:none}
+.w3-tag, .fa {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+.stamp {
+  transform: rotate(12deg);
+	color: #555;
+	font-size: 3rem;
+	font-weight: 700;
+	border: 0.25rem solid #555;
+	display: inline-block;
+	padding: 0.25rem 1rem;
+	text-transform: uppercase;
+	border-radius: 1rem;
+	font-family: 'Courier';
+	-webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+  -webkit-mask-size: 944px 604px;
+  mix-blend-mode: multiply;
+  margin-left: 45%;
+  margin-top: 20px;
+}
+
+.is-fake {
+  color: #D23;
+  border: 0.5rem double #D23;
+  transform: rotate(10deg);
+	-webkit-mask-position: 2rem 3rem;
+  font-size: 2rem;
+  zoom: 140%;  
+}
+
+.is-true {
+	color: #0A9928;
+	border: 0.5rem solid #0A9928;
+	-webkit-mask-position: 13rem 6rem;
+	transform: rotate(-14deg);
+  border-radius: 0;
+} 
+</style>
+<body>
+
+<!-- Links (sit on top) -->
+<!-- <div class="w3-top">
+  <div class="w3-row w3-large w3-light-grey">
+    <div class="w3-col s4">
+      <a href="#" class="w3-button w3-block">Home</a>
+    </div>
+    <div class="w3-col s4">
+      <a href="#about" class="w3-button w3-block">About</a>
+    </div>
+    <div class="w3-col s4">
+      <a href="#contact" class="w3-button w3-block">Contact</a>
+    </div>
+  </div>
+</div> -->
+
+<!-- Content -->
+<div class="w3-content" style="max-width:1100px;margin-top:50px;margin-bottom:80px">
+
+  <div class="w3-panel">
+    <h1 style="text-align: center; font-family: fantasy; font-size: 50pt;"><b>Fake News Detector</b></h1>
+  </div>
+
+  <div>
+      <p style="font-size: 14pt;">'Fake news' is false or misleading information presented under the guise of factual information. 
+          It is often produced to damage a person's or entity's reputation or for the author's financial gain.
+        Fake news, having the propensity of being more emotive and thus resulting in more clicks, often displaces real news 
+        as a result of social media algorithms. The proliferation of fake news online is a serious concern as it has a significant
+        negative impact on both individuals and society by spreading mistrust and confusion.</p>
+        <p style="font-size: 14pt;">Machine learning algorithms utilising natural language processing (NLP) such as the one presented here 
+            could begin to restore the balance between what is true and what is fake.</p>
+  </div>
+
+  <br>
+
+  <form action="{{ url_for('predict')}}"method="POST">
+    <label style="font-size: 16pt;">Input the article body text</label>
+      <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" type="text" name="Contents" required>
+
+    <button type="submit" action="{{ url_for('predict') }}" method="POST" class="w3-button w3-block w3-black" style="align-items: center; font-size: x-large;">GO</button>
+  </form>
+    <div>
+      {% if outcome == 1 %}
+        <span class="stamp is-fake result=1">Fake</span>  
+      {% elif outcome == 0%}  
+        <span class="stamp is-true result=0">True</span>         
+      {% else %}           
+      {% endif %}
+    </div>
+
+  <br>
+  <br>
+
+  <div>
+    <div class='tableauPlaceholder' id='viz1642835054485' style='position: relative'><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='story1_16428346568430&#47;Story1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1642835054485');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1016px';vizElement.style.height='991px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+  </div>
+
+  <!-- Slideshow -->
+  <div class="w3-container">
+    <div class="w3-display-container mySlides">
+      <img src="/w3images/coffee.jpg" style="width:100%">
+      <div class="w3-display-topleft w3-container w3-padding-32">
+        <span class="w3-white w3-padding-large w3-animate-bottom">Lorem ipsum</span>
+      </div>
+    </div>
+    <div class="w3-display-container mySlides">
+      <img src="/w3images/workbench.jpg" style="width:100%">
+      <div class="w3-display-middle w3-container w3-padding-32">
+        <span class="w3-white w3-padding-large w3-animate-bottom">Klorim tipsum</span>
+      </div>
+    </div>
+    <div class="w3-display-container mySlides">
+      <img src="/w3images/sound.jpg" style="width:100%">
+      <div class="w3-display-topright w3-container w3-padding-32">
+        <span class="w3-white w3-padding-large w3-animate-bottom">Blorum pipsum</span>
+      </div>
+    </div>
+
+    <!-- Slideshow next/previous buttons or Tableau -->
+    <div class="w3-container w3-dark-grey w3-padding w3-xlarge">
+      <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-hover-text-teal"></i></div>
+      <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-hover-text-teal"></i></div>
+    
+      <div class="w3-center">
+        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Grid -->
+  <div class="w3-row-padding" id="behind">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Behind The Scenes</span>
+    </div>
+    <h3>Pre-Processing Steps</h3>
+    <p style="font-size: 14pt;">Three raw data sets were sourced from Kaggle.com as CSV files, combined, then cleaned and prepared in Jupyter Notebook. The following steps were taken:</p>
+    <ul style="font-size: 14pt;">
+      <li>Removed duplicate rows</li>
+      <li>Removed rows with blank cells</li>
+      <li>Removed articles with title lengths less than 3 words?</li>
+      <li>Removed articles with body lengths less than 50 words?</li>
+      <li>Removed new line characters</li>
+      <li>Removed all non ascii characters</li>
+      <li>Changed target variable (real/fake) to binary (0/1)</li>
+    </ul>
+    <h3>Machine Learning Model Development</h3>
+    <p style="font-size: 14pt;">A logistic regression model was created using python and sklearn to predict whether text from a news article was real or fake news. These were the steps:</p>
+    <ul style="font-size: 14pt;">
+      <li>Removed stop words</li>
+      <li>Removed punctuation</li>
+      <li>Split data into train and test (80/20)</li>
+      <li>Apply TF-IDF Vectoriser, fit and transform to dataset</li>
+      <li>Create a logistic regression classifier and fit to dataset</li>
+      <li>Used pickle to export data for access by Flask app</li>
+    </ul>
+    <div>
+      <h3>Project Workflow</h3>
+      <p style="font-size: 14pt;">The following diagram represents the project workflow.</p>
+      <div>
+        <img src="{{url_for('static', filename='/Figures/ProjectWorkflow.PNG')}}">
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="w3-row-padding" id="about">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Who We Are</span>
+    </div>
+
+    <div class="w3-third w3-margin-bottom">
+      <div class="w3-card-4">
+        <img src="https://media-exp1.licdn.com/dms/image/C4D03AQEgFGV8sldElA/profile-displayphoto-shrink_400_400/0/1641344041767?e=1648080000&v=beta&t=LJqsjNbZvnUXjYN5xKbuDROb0QUPvR92ogmpTN87K6U" alt="Marcus" style="width:100%">
+        <div class="w3-container">
+          <h3 style="text-align: center;">Marcus Correia</h3>
+          <p style="text-align: center;">GitHub <a href="https://github.com/MarcusKorea" title="LINK" target="_blank" class="w3-hover-text-green">LINK</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-third w3-margin-bottom">
+      <div class="w3-card-4">
+        <img src="/Photos/Ivana.jpg" alt="Gianna" style="width:100%">
+        <div class="w3-container">
+          <h3 style="text-align: center;">Gianna Abono</h3>
+          <p style="text-align: center;">GitHub <a href="https://github.com/Macampon" title="LINK" target="_blank" class="w3-hover-text-green">LINK</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-third w3-margin-bottom">
+      <div class="w3-card-4">
+        <img src="https://media-exp1.licdn.com/dms/image/C5603AQFwcss_HAoTZQ/profile-displayphoto-shrink_400_400/0/1534835026736?e=1648080000&v=beta&t=5VJXAs4Wc6LIV224Vh6uAxu1oGjCN--bQP1q9yuVk_8" alt="Ivana" style="width:100%">
+        <div class="w3-container">
+          <h3 style="text-align: center;">Ivana Stopka</h3>
+          <p style="text-align: center;">GitHub <a href="https://github.com/ivana-stopka" title="LINK" target="_blank" class="w3-hover-text-green">LINK</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+  <!-- <h4>Fake News Detector 2022</h4> -->
+  <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-github w3-hover-opacity"></i>
+  </div>
+  <p><a href="https://github.com/MarcusKorea/MarcusKorea-Fake_News_Detector" title="Repo" target="_blank" class="w3-hover-text-green">MORE</a></p>
+</footer>
+
+
+<script>
+// Slideshow
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demodots");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-white";
+}
+</script>
+
+</body>
+</html>
