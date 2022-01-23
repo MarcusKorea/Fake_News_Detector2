@@ -1,0 +1,6 @@
+*.csv
+*.docx
+*.xlsx
+*.ipynb
+*.md
+*.DS_Store
