@@ -30,8 +30,6 @@ def predict():
     print("in predict")
     if request.method == 'POST':
         message = [str(x) for x in request.form.values()][0]
-        # removes stop word, punctuation and non ascci characters from entered line
-        message = clean_input(message)
         data = [message]
 
         # feeds entered line into the model
