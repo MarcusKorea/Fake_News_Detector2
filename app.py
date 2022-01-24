@@ -1,8 +1,8 @@
 # Import the required libraries
 from flask import Flask, render_template, redirect, request
-import spacy
-import nltk
-from nltk.tokenize import word_tokenize
+# import spacy
+# import nltk
+# from nltk.tokenize import word_tokenize
 import string
 import pickle
 import os
@@ -15,34 +15,34 @@ model = pickle.load(open("Model_files/Models/log_reg_model.pkl", 'rb'))
 
 # define some user functions
 # remove non ascii characters
-def remove_non_ascii(word):
-    new_word = word.encode("ascii","ignore").decode()
-    return new_word
-    # remove punctuation and stop words
-def clean_input(input):
-    # load language model
-    sp = spacy.load('en_core_web_sm')
-    # import stop words
-    all_stopwords = sp.Defaults.stop_words
-    # import puncuation
-    punc  = string.punctuation
+# def remove_non_ascii(word):
+#     new_word = word.encode("ascii","ignore").decode()
+#     return new_word
+#     # remove punctuation and stop words
+# def clean_input(input):
+#     # load language model
+#     sp = spacy.load('en_core_web_sm')
+#     # import stop words
+#     all_stopwords = sp.Defaults.stop_words
+#     # import puncuation
+#     punc  = string.punctuation
 
-    # replace any weird characters
-    text = input
-    remove_non_ascii(text)
+#     # replace any weird characters
+#     text = input
+#     remove_non_ascii(text)
 
-    # remove puncuation
-    new_text = text.translate(str.maketrans('', '', punc))
+#     # remove puncuation
+#     new_text = text.translate(str.maketrans('', '', punc))
 
-    # tokenize and make everything lower case
-    text_tokens = word_tokenize(new_text.lower())
+#     # tokenize and make everything lower case
+#     text_tokens = word_tokenize(new_text.lower())
 
-    # remove stop words
-    tokens_without_sw= [word for word in text_tokens if not word in all_stopwords]
+#     # remove stop words
+#     tokens_without_sw= [word for word in text_tokens if not word in all_stopwords]
 
-    # make list a string again
-    tokens_without_sw = " ".join(tokens_without_sw)
-    return tokens_without_sw
+#     # make list a string again
+#     tokens_without_sw = " ".join(tokens_without_sw)
+#     return tokens_without_sw
 
 # Start Flask
 app =Flask(__name__)
