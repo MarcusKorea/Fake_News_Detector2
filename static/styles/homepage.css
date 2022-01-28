@@ -1,3 +1,9 @@
+body{
+background-color: #ddddd9;
+}
+.na{
+  background-color: #ddddd9;
+}
 h1{
   font-size: 50pt;
 }
@@ -17,7 +23,22 @@ h1{
   margin-bottom:30px;
   text-align: center;
 }
+.navbar{
+  background-color: #CDC7BD;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.navbar-nav {
+  float:none;
+  margin:0 auto;
+  display: block;
+  text-align: center;
+}
 
+.navbar-nav > li {
+  display: inline-block;
+  float:none;
+}
 /* paragraphs */
 p {
   /* font-family: "Playfair Display"; */

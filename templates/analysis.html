@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Links to Style Sheets -->
+    <!-- Bootstrap Sketchy Theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
+    <!-- News Article Font -->
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href= "../static/styles/homepage.css">
+    <title>Fake News Detector</title>
+    </head>
+<body>
+      <!-- Nav Bar -->
+      <nav class="na navbar navbar-expand-lg ">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class=" nb navbar-nav me-auto justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link active" href="fk_index.html">Predict Fake News
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="analysis.html">Analysis</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="code-for-nerds.html">Code for Nerds</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="meet-the-team.html">Meet the Team</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <br>
+  <div class = "whole_cont container">
+    <!-- Heading -->
+    <div class = "container">
+      <div class = "row">
+        <div class = "col">
+          <h1 class = "hdpos hdsize main_title"><b>Analysis</b></h1>
+        </div>
+      </div>
+    </div>
+    <hr>
+    
+    Tableau Graph
+    <div class="tableau_cont container">
+      <div class="row g-0">
+        <div class="col-6">
+          <div class="box" style = "background-color: palevioletred;">
+            <p style="color: black;">Tableau Graph 1 (proportions of real/fake)</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="box" style = "background-color: palegoldenrod;">
+            <p style="color: black;">Tableau Graph 2 (proportions of tweets)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Plotly graphs -->
+    <div class="plot_cont container">
+      <div class="row g-0">
+        <div class="col-6">
+          <div class="box" style = "background-color: palegreen;">
+            <p style="color: black;">Plotly Graph 1 (avg word length)</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="box" style = "background-color: paleturquoise;">
+            <p style="color: black;">Plotly Graph 2 (word length / body length)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- R Graphs -->
+    <div class=" r_cont container">
+      <div class="row g-0">
+        <div class="col-6">
+          <div class="box" style = "background-color: lightsalmon;">
+            <p style="color: black;">R Graph 1 (Distribution)</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="box" style = "background-color: lightskyblue;">
+            <p style="color: black;">R Graph 2 (Distribution)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+ <!-- Footer -->
+<div class="container">
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="fk_index.html" class="nav-link px-2 text-muted">Predict Fake News</a></li>
+        <li class="nav-item"><a href="analysis.html" class="nav-link px-2 text-muted">Analysis</a></li>
+        <li class="nav-item"><a href="code-for-nerds.html" class="nav-link px-2 text-muted">Code for Nerds</a></li>
+        <li class="nav-item"><a href="meet-the-team.html" class="nav-link px-2 text-muted">Meet the Team</a></li>
+      </ul>
+      <p class="text-center text-muted">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+          </svg>
+          Back to top</p>
+    </footer>
+  </div>
+<!-- END OF DIV TAG -->
+</div>
+</body>
+</html>
