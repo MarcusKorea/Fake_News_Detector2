@@ -15,8 +15,6 @@ app =Flask(__name__)
 # home page
 @app.route("/",  methods=["GET","POST"])
 def index():
-    print("in index)")
-    print( request.method)
     if request.method == "GET":
         return render_template("fk_index.html")
 
@@ -27,7 +25,6 @@ def index():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    print("in predict")
     if request.method == 'POST':
         message = [str(x) for x in request.form.values()][0]
         data = [message]
@@ -39,6 +36,10 @@ def predict():
         prediction = model.predict(vect)[0]
     return render_template("fk_index.html",outcome = prediction)
 
+# Analysis Page
+@app.route("/analysis")
+def analysis():
+    return render_template(("analysis.html"))
 
 # main
 if __name__ == "__main__":
