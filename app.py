@@ -41,6 +41,16 @@ def predict():
 def analysis():
     return render_template(("analysis.html"))
 
+# Code for Nerds Page
+@app.route("/code-for-nerds")
+def code_for_nerds():
+    return render_template(("code-for-nerds.html"))
+
+# Meet the Team Page
+@app.route("/meet-the-team")
+def meet_the_team():
+    return render_template(("meet-the-team.html"))
+
 # main
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', port =port, debug = True)
