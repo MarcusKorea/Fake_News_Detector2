@@ -1,0 +1,137 @@
+h1{
+  font-size: 50pt;
+}
+.hdpos{
+   text-align: center;
+   font-family: "Playfair Display"; 
+}
+
+/* containter that is for the whole page */
+.whole_cont{
+  max-width:1100px;
+}
+
+/* title */
+.main_title{
+  margin-top:50px;
+  margin-bottom:30px;
+  text-align: center;
+}
+
+/* paragraphs */
+p {
+  font-family: "Playfair Display";
+  font-size: 14pt;
+}
+
+
+.form_text_bar {
+  width:100%;
+}
+
+.form_label{
+  font-size: 16pt;
+  font-family: "Playfair Display";
+}
+
+.predict_bttn{
+  align-items: center; 
+  font-size: x-large;
+  background-color: black;
+}
+
+/* tableau graphs */
+.box {
+  display: block;
+  padding-top: 60%;
+}
+
+/* stamps */
+.stamp_app{
+  padding-top: 20%;
+  border: 12pt black;
+  position: relative;
+}
+
+.bts_info{
+  font-family: "Playfair Display"; 
+  font-size: 14pt;
+}
+
+.card_links{
+  text-decoration: none;
+  color: black;
+}
+.card:hover{
+  opacity: 0.5;
+}
+.btt{
+  color: black;
+}
+
+.stamp {
+  display: inline-block;
+	font-size: 3rem;
+	font-weight: 700;
+	padding: 0.25rem 1rem;
+	text-transform: uppercase;
+	border-radius: 1rem;
+	font-family: 'Courier';
+	-webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+  -webkit-mask-size: 944px 604px;
+  mix-blend-mode: multiply;
+  margin-left: 38%;
+  margin-top: 0px;
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  animation-delay:1.5s;
+  -webkit-animation-delay:1.5s;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  opacity: 0;
+  -webkit-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+  position: absolute;
+  top: 20%;
+}
+
+@-webkit-keyframes pulse{
+  0%{
+    opacity: 0;
+  }
+  10%{
+    opacity:.50;
+    transform-origin: 50% 50%;
+    transform: rotate(-2deg) scale(5);
+    transition: all .3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  }
+  100%{
+    opacity:1;
+    transform: rotate(-15deg) scale(1);
+  }
+}
+
+.is-fake {
+  color: #D23;
+  border: 0.5rem double #D23;
+  transform: rotate(10deg);
+	-webkit-mask-position: 2rem 3rem;
+  font-size: 2rem;
+  zoom: 200%;
+}
+
+.is-true {
+	color: #0A9928;
+  border: 0.5rem double #0A9928;
+  transform: rotate(10deg);
+	-webkit-mask-position: 2rem 3rem;
+  font-size: 2rem;
+  zoom: 200%;
+} 
+.tab1{
+  /* margin-left: 10px; */
+  background-color: pink;
+}
+
+
+

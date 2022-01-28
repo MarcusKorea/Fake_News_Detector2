@@ -3,255 +3,300 @@
 <title>Fake News Detector</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
-.mySlides {display:none}
-.w3-tag, .fa {cursor:pointer}
-.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
-.stamp {
-  transform: rotate(12deg);
-	color: #555;
-	font-size: 3rem;
-	font-weight: 700;
-	border: 0.25rem solid #555;
-	display: inline-block;
-	padding: 0.25rem 1rem;
-	text-transform: uppercase;
-	border-radius: 1rem;
-	font-family: 'Courier';
-	-webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
-  -webkit-mask-size: 944px 604px;
-  mix-blend-mode: multiply;
-  margin-left: 45%;
-  margin-top: 20px;
-}
 
-.is-fake {
-  color: #D23;
-  border: 0.5rem double #D23;
-  transform: rotate(10deg);
-	-webkit-mask-position: 2rem 3rem;
-  font-size: 2rem;
-  zoom: 140%;  
-}
+<!-- Links to Style Sheets -->
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- News Article Font -->
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<!-- Custom CSS -->
+<link rel="stylesheet" href= "../static/styles/homepage.css">
 
-.is-true {
-	color: #0A9928;
-	border: 0.5rem solid #0A9928;
-	-webkit-mask-position: 13rem 6rem;
-	transform: rotate(-14deg);
-  border-radius: 0;
-} 
-</style>
+
+<!-- Body -->
 <body>
-
-<!-- Links (sit on top) -->
-<!-- <div class="w3-top">
-  <div class="w3-row w3-large w3-light-grey">
-    <div class="w3-col s4">
-      <a href="#" class="w3-button w3-block">Home</a>
-    </div>
-    <div class="w3-col s4">
-      <a href="#about" class="w3-button w3-block">About</a>
-    </div>
-    <div class="w3-col s4">
-      <a href="#contact" class="w3-button w3-block">Contact</a>
-    </div>
-  </div>
-</div> -->
-
-<!-- Content -->
-<div class="w3-content" style="max-width:1100px;margin-top:50px;margin-bottom:80px">
-
-  <div class="w3-panel">
-    <h1 style="text-align: center; font-family: fantasy; font-size: 50pt;"><b>Fake News Detector</b></h1>
-  </div>
-
-  <div>
-      <p style="font-size: 14pt;">'Fake news' is false or misleading information presented under the guise of factual information. 
-          It is often produced to damage a person's or entity's reputation or for the author's financial gain.
-        Fake news, having the propensity of being more emotive and thus resulting in more clicks, often displaces real news 
-        as a result of social media algorithms. The proliferation of fake news online is a serious concern as it has a significant
-        negative impact on both individuals and society by spreading mistrust and confusion.</p>
-        <p style="font-size: 14pt;">Machine learning algorithms utilising natural language processing (NLP) such as the one presented here 
-            could begin to restore the balance between what is true and what is fake.</p>
-  </div>
-
-  <br>
-
-  <form action="{{ url_for('predict')}}"method="POST">
-    <label style="font-size: 16pt;">Input the article body text</label>
-      <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" type="text" name="Contents" required>
-
-    <button type="submit" action="{{ url_for('predict') }}" method="POST" class="w3-button w3-block w3-black" style="align-items: center; font-size: x-large;">GO</button>
-  </form>
-    <div>
-      {% if outcome == 1 %}
-        <span class="stamp is-fake result=1">Fake</span>  
-      {% elif outcome == 0%}  
-        <span class="stamp is-true result=0">True</span>         
-      {% else %}           
-      {% endif %}
-    </div>
-
-  <br>
-  <br>
-
-  <div>
-    <div class='tableauPlaceholder' id='viz1642835054485' style='position: relative'><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='story1_16428346568430&#47;Story1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1642835054485');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1016px';vizElement.style.height='991px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-  </div>
-
-  <!-- Slideshow -->
-  <div class="w3-container">
-    <div class="w3-display-container mySlides">
-      <img src="/w3images/coffee.jpg" style="width:100%">
-      <div class="w3-display-topleft w3-container w3-padding-32">
-        <span class="w3-white w3-padding-large w3-animate-bottom">Lorem ipsum</span>
-      </div>
-    </div>
-    <div class="w3-display-container mySlides">
-      <img src="/w3images/workbench.jpg" style="width:100%">
-      <div class="w3-display-middle w3-container w3-padding-32">
-        <span class="w3-white w3-padding-large w3-animate-bottom">Klorim tipsum</span>
-      </div>
-    </div>
-    <div class="w3-display-container mySlides">
-      <img src="/w3images/sound.jpg" style="width:100%">
-      <div class="w3-display-topright w3-container w3-padding-32">
-        <span class="w3-white w3-padding-large w3-animate-bottom">Blorum pipsum</span>
-      </div>
-    </div>
-
-    <!-- Slideshow next/previous buttons or Tableau -->
-    <div class="w3-container w3-dark-grey w3-padding w3-xlarge">
-      <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-hover-text-teal"></i></div>
-      <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-hover-text-teal"></i></div>
-    
-      <div class="w3-center">
-        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
-        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
-        <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Grid -->
-  <div class="w3-row-padding" id="behind">
-    <div class="w3-center w3-padding-64">
-      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Behind The Scenes</span>
-    </div>
-    <h3>Pre-Processing Steps</h3>
-    <p style="font-size: 14pt;">Three raw data sets were sourced from Kaggle.com as CSV files, combined, then cleaned and prepared in Jupyter Notebook. The following steps were taken:</p>
-    <ul style="font-size: 14pt;">
-      <li>Removed duplicate rows</li>
-      <li>Removed rows with blank cells</li>
-      <li>Removed articles with title lengths less than 3 words?</li>
-      <li>Removed articles with body lengths less than 50 words?</li>
-      <li>Removed new line characters</li>
-      <li>Removed all non ascii characters</li>
-      <li>Changed target variable (real/fake) to binary (0/1)</li>
-    </ul>
-    <h3>Machine Learning Model Development</h3>
-    <p style="font-size: 14pt;">A logistic regression model was created using python and sklearn to predict whether text from a news article was real or fake news. These were the steps:</p>
-    <ul style="font-size: 14pt;">
-      <li>Removed stop words</li>
-      <li>Removed punctuation</li>
-      <li>Split data into train and test (80/20)</li>
-      <li>Apply TF-IDF Vectoriser, fit and transform to dataset</li>
-      <li>Create a logistic regression classifier and fit to dataset</li>
-      <li>Used pickle to export data for access by Flask app</li>
-    </ul>
-    <div>
-      <h3>Project Workflow</h3>
-      <p style="font-size: 14pt;">The following diagram represents the project workflow.</p>
-      <div>
-        <img src="{{url_for('static', filename='/Figures/ProjectWorkflow.PNG')}}">
-      </div>
-    </div>
-  </div>
-
-  <!-- Grid -->
-  <div class="w3-row-padding" id="about">
-    <div class="w3-center w3-padding-64">
-      <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Who We Are</span>
-    </div>
-
-    <div class="w3-third w3-margin-bottom">
-      <div class="w3-card-4">
-        <img src="https://media-exp1.licdn.com/dms/image/C4D03AQEgFGV8sldElA/profile-displayphoto-shrink_400_400/0/1641344041767?e=1648080000&v=beta&t=LJqsjNbZvnUXjYN5xKbuDROb0QUPvR92ogmpTN87K6U" alt="Marcus" style="width:100%">
-        <div class="w3-container">
-          <h3 style="text-align: center;">Marcus Correia</h3>
-          <p style="text-align: center;">GitHub <a href="https://github.com/MarcusKorea" title="LINK" target="_blank" class="w3-hover-text-green">LINK</a></p>
+  <!--  put whole page in a container -->
+  <div class = "whole_cont container">
+      <!-- Heading -->
+      <div class = "container">
+        <div class = "row">
+          <div class = "col">
+            <h1 class = "hdpos hdsize main_title"><b>Fake News Detector</b></h1>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="w3-third w3-margin-bottom">
-      <div class="w3-card-4">
-        <img src="/Photos/Ivana.jpg" alt="Gianna" style="width:100%">
-        <div class="w3-container">
-          <h3 style="text-align: center;">Gianna Abono</h3>
-          <p style="text-align: center;">GitHub <a href="https://github.com/Macampon" title="LINK" target="_blank" class="w3-hover-text-green">LINK</a></p>
+      <hr>
+      <!-- Intro Info -->
+      <div class=" intro_info container">
+        <div class = "row">
+          <div class = "col">
+            <p>'Fake news' is false or misleading information presented under the guise of factual information. It is often produced to damage a person's or entity's reputation or for the author's financial gain.Fake news, having the propensity of being more emotive and thus resulting in more clicks, often displaces real newsas a result of social media algorithms. The proliferation of fake news online is a serious concern as it has a significant negative impact on both individuals and society by spreading mistrust and confusion.
+            </p>
+            <p>Machine learning algorithms utilising natural language processing (NLP) such as the one presented here,
+              could begin to restore the balance between what is true and what is fake.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="w3-third w3-margin-bottom">
-      <div class="w3-card-4">
-        <img src="https://media-exp1.licdn.com/dms/image/C5603AQFwcss_HAoTZQ/profile-displayphoto-shrink_400_400/0/1534835026736?e=1648080000&v=beta&t=5VJXAs4Wc6LIV224Vh6uAxu1oGjCN--bQP1q9yuVk_8" alt="Ivana" style="width:100%">
-        <div class="w3-container">
-          <h3 style="text-align: center;">Ivana Stopka</h3>
-          <p style="text-align: center;">GitHub <a href="https://github.com/ivana-stopka" title="LINK" target="_blank" class="w3-hover-text-green">LINK</a></p>
+      <br>
+      
+      <!-- Form -->
+      <div class="form_cont container">
+        <div class = "row">
+          <div class = "col">
+            <form action="{{ url_for('predict')}}"method="POST">
+              <!-- Creates a label -->
+              <label class = "form_label"><b>Enter article title or paragraph(s)</b></label>
+              <!-- Create input bar with placeholder text -->
+              <input class = "form_text_bar" class="w3-input w3-border w3-hover-border-black" type="text" name="Contents" required placeholder="Example: States are taking their own political paths on COVID-19 school rules">
+              <!-- Create go button -->
+              <button class="predict_bttn btn btn-secondary col-12" type="submit" action="{{ url_for('predict') }}" method="POST">GO</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+      
+      <!-- Stamps -->
+          <div class="stamp_app">
+            {% if outcome == 1 %}
+            <span class="stamp is-fake result=1">Fake</span>
+            {% elif outcome == 0%}
+            <span class="stamp is-true result=0">Real</span>
+            {% else %}
+            {% endif %}
+          </div>
+      </div>
 
-</div>
+      
+      <!-- Tableau Graph-->
+      <div class="tableau_cont container">
+        <div class="row g-0">
+          <div class="col-6">
+            <div class="box" style = "background-color: palevioletred;">
+              <p style="color: black;">Tableau Graph 1 (proportions of real/fake)</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="box" style = "background-color: palegoldenrod;">
+              <p style="color: black;">Tableau Graph 2 (proportions of tweets)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Plotly graphs -->
+      <div class="plot_cont container">
+        <div class="row g-0">
+          <div class="col-6">
+            <div class="box" style = "background-color: palegreen;">
+              <p style="color: black;">Plotly Graph 1 (avg word length)</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="box" style = "background-color: paleturquoise;">
+              <p style="color: black;">Plotly Graph 2 (word length / body length)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- R Graphs -->
+      <div class=" r_cont container">
+        <div class="row g-0">
+          <div class="col-6">
+            <div class="box" style = "background-color: lightsalmon;">
+              <p style="color: black;">R Graph 1 (Distribution)</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="box" style = "background-color: lightskyblue;">
+              <p style="color: black;">R Graph 2 (Distribution)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Behind the scenes -->
+      <div class="bts_cont container">
+        <div class="row">
+          <div class="col">
+            
+              <!-- BTS Header -->
+              <div class="bts_cont_h container">
+                <div class="row">
+                  <div class="col">
+                    <div class="h2 hdpos hdsize">Behind the scenes</div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              
+              <!-- Pre-Processing Steps -->
+              <div class="pps_cont container">
+                <!-- PPS Header -->
+                <div class="
+                pps_head_cont container">
+                <div class="row">
+                  <div class="col">
+                    <h3 class="pps_title hdpos hdsize">Pre-Processing Steps</h3>
+                  </div>
+                </div>
+              </div>
+              <!-- PPS Info -->
+              <div class="pps_info_cont container">
+                <div class="row">
+                  <div class="col">
+                    <p class = pps_info>Three raw data sets were sourced from Kaggle.com as CSV files, combined, then cleaned and prepared in Jupyter Notebook. The following steps were taken:</p>
+                    <ul class="pps_info bts_info">
+                      <li>Removed duplicate rows</li>
+                      <li>Removed rows with blank cells</li>
+                      <li>Removed articles with title lengths less than 3 words</li>
+                      <li>Removed articles with body lengths less than 50 words</li>
+                      <li>Removed new line characters</li>
+                      <li>Removed all non ascii characters</li>
+                      <li>Changed target variable (real/fake) to binary (0/1)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Model Development -->
+            <div class="md_cont container">
+              <div class="row">
+                <div class="col">
+                  <!-- MD Header -->
+                  <div class="md_head container">
+                    <div class="row">
+                      <div class="col">
+                        <h3 class="hdpos">Model Development</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <!-- MD Info -->
+                  <div class="md_info bts_info container">
+                    <div class="row">
+                      <div class="col">
+                        <p>A logistic regression model was created using python and sklearn to predict whether text from a news article was real or fake news. These were the steps:</p>
+                        <ul>
+                          <li>Removed stop words</li>
+                          <li>Removed punctuation</li>
+                          <li>Split data into train and test (80/20)</li>
+                          <li>Apply TF-IDF Vectoriser, fit and transform to dataset</li>
+                          <li>Create a logistic regression classifier and fit to dataset</li>
+                          <li>Used pickle to export data for access by Flask app</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <hr>
+      <!-- Project Workflow -->
+      <div class="pw_cont container">
+        <div class="row">
+          <div class="col">
+            <!-- Workflow Header -->
+            <div class="pw_headerconatiner">
+              <div class="row">
+                <div class="col">
+                  <h3 class = "hdpos">Application Workflow</h3>
+                </div>
+              </div>
+            </div>
+            <!-- Workflow Image -->
+            <div class="workflow_image_cont container">
+              <div class="row">
+                <div class="col"> 
+                  <p class = "bts_info">The following diagram represents the project workflow.</p>
+                  <img class = "mw-50 img-fluid" src="{{url_for('static', filename='Figures/Project_Workflow.PNG')}}" alt = "Application Workflow">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- Meet the Team -->
+      <div class="row">
+        <div class="col">
+        <h3 class  ="hdpos"> Meet the Team</h3>
+        <!-- Cards -->
+          <div class="row">
+            <!-- Marcus Correia -->
+            <div class="col-4">
+              <a class = "card_links" href="https://github.com/MarcusKorea">
+                <div class="card">
+                  <img class = "card-img-top" src="https://media-exp1.licdn.com/dms/image/C4D03AQEgFGV8sldElA/profile-displayphoto-shrink_400_400/0/1641344041767?e=1648080000&v=beta&t=LJqsjNbZvnUXjYN5xKbuDROb0QUPvR92ogmpTN87K6U" alt="Marcus Correia">
+                  <div class=" card_links class-body">
+                    <p class = "bts_info hdpos">Marcus Corriea <br>
+                      <!-- Github Icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg> 
+                    Click to see Github Profile</p>
+                  </div>
+                </div>
+              </a>
+            </div>
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
-  <!-- <h4>Fake News Detector 2022</h4> -->
-  <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-  <div class="w3-xlarge w3-section">
-    <i class="fa fa-github w3-hover-opacity"></i>
-  </div>
-  <p><a href="https://github.com/MarcusKorea/MarcusKorea-Fake_News_Detector" title="Repo" target="_blank" class="w3-hover-text-green">MORE</a></p>
-</footer>
+            <!-- Gianna Abono -->
+            <div class="col-4">
+              <a class = "card_links" href="https://github.com/Macampon">
+                <div class="card">
+                  <img class = "card-img-top" src="https://avatars.githubusercontent.com/u/87930356?v=4" alt="Gianna Abono">
+                  <div class=" card_links class-body">
+                    <p class = "bts_info hdpos">Gianna Abono <br>
+                      <!-- Github Icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg> 
+                    Click to see Github Profile</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          
+            <!-- Ivana Stopka -->
+            <div class="col-4">
+              <a class = "card_links" href="https://github.com/ivana-stopka">
+                <div class="card">
+                  <img class = "card-img-top" src="https://media-exp1.licdn.com/dms/image/C5603AQFwcss_HAoTZQ/profile-displayphoto-shrink_400_400/0/1534835026736?e=1648080000&v=beta&t=5VJXAs4Wc6LIV224Vh6uAxu1oGjCN--bQP1q9yuVk_8" alt="Ivana Stopka">
+                  <div class=" card_links class-body">
+                    <p class = "bts_info hdpos">Ivana Stopka <br>
+                      <!-- Github Icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg> 
+                    Click to see Github Profile</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
 
-
-<script>
-// Slideshow
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demodots");
-  if (n > x.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = x.length} ;
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" w3-white", "");
-  }
-  x[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " w3-white";
-}
-</script>
-
+          <!-- <span class="text-muted">2022</span> -->
+          <a class = "btt" href="#">
+            <p >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+              </svg>
+              Back to the top</p>
+          </a>
+        </div>
+      </footer>
+<!-- END OF DIV TAG -->
+</div>x
 </body>
 </html>
