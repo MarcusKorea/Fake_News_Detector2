@@ -36,6 +36,11 @@ def predict():
         prediction = model.predict(vect)[0]
     return render_template("fk_index.html",outcome = prediction)
 
+# Behind the App
+@app.route("/behind-the-app")
+def bta():
+    return render_template("behind-the-app.html")
+
 # Analysis Page
 @app.route("/analysis")
 def analysis():
