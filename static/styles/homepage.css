@@ -3,7 +3,7 @@ h1{
 }
 .hdpos{
    text-align: center;
-   font-family: "Playfair Display"; 
+   /* font-family: "Playfair Display";  */
 }
 
 /* containter that is for the whole page */
@@ -20,7 +20,7 @@ h1{
 
 /* paragraphs */
 p {
-  font-family: "Playfair Display";
+  /* font-family: "Playfair Display"; */
   font-size: 14pt;
 }
 
@@ -31,7 +31,7 @@ p {
 
 .form_label{
   font-size: 16pt;
-  font-family: "Playfair Display";
+  /* font-family: "Playfair Display"; */
 }
 
 .predict_bttn{
@@ -54,7 +54,7 @@ p {
 }
 
 .bts_info{
-  font-family: "Playfair Display"; 
+  /* font-family: "Playfair Display";  */
   font-size: 14pt;
 }
 
@@ -68,6 +68,7 @@ p {
 .btt{
   color: black;
 }
+
 
 .stamp {
   display: inline-block;
