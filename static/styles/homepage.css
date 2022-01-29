@@ -35,7 +35,10 @@ h1{
   /* display: block; */
   text-align: center;
 }
-
+.navbar-nav > li {
+  margin-left: 45px;
+  margin-right: 45px;
+}
 
 /* paragraphs */
 p {
