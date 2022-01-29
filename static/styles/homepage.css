@@ -36,10 +36,7 @@ h1{
   text-align: center;
 }
 
-.navbar-nav > li {
-  display: inline-block;
-  float:none;
-}
+
 /* paragraphs */
 p {
   /* font-family: "Playfair Display"; */
