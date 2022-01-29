@@ -25,14 +25,14 @@ h1{
 }
 .navbar{
   background-color: #CDC7BD;
-  margin-left: 5px;
+  /* margin-left: 5px;
   margin-right: 5px;
-  margin-top: 5px;
+  margin-top: 5px; */
 }
 .navbar-nav {
-  float:none;
-  margin:0 auto;
-  display: block;
+  /* float:none; */
+  margin: auto;
+  /* display: block; */
   text-align: center;
 }
 
