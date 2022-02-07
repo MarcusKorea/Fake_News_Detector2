@@ -91,7 +91,10 @@ p {
   color: black;
 }
 
-
+/* .p1{
+  padding-bottom: -4px;
+  line-height: 1;
+} */
 .stamp {
   display: inline-block;
 	font-size: 3rem;

@@ -14,8 +14,13 @@
     <title>Fake News Detector</title>
     </head>
 <body>
+    <!-- Link to JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <!-- D3 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Custom JS -->
+    <script src = "../static/js/plots.js"></script>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="{{url_for('index')}}">Fake News</a>
@@ -36,9 +41,6 @@
                     <a class="nav-link" href="{{url_for('analysis')}}">Analysis</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('code_for_nerds')}}">Code for Nerds</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{url_for('meet_the_team')}}">Meet the Team</a>
                 </li>
             </ul>
@@ -57,51 +59,84 @@
     </div>
     <hr>
     
-    Tableau Graph
-    <div class="tableau_cont container">
+    <!-- GRAPHS -->
+    <div class="row g-0">
+        <div class="row g-0">
+            <h3 class = "pps_title hdpos hdsize">Words that Contribute to each Outcome of the Model</h3>
+        </div>
       <div class="row g-0">
-        <div class="col-6">
-          <div class="box" style = "background-color: palevioletred;">
-            <p style="color: black;">Tableau Graph 1 (proportions of real/fake)</p>
+        <!-- FAKE VS REAL PROP -->
+          <div class="col-lg-6 col-sm-12">
+            <div>
+              <iframe width="500" height="500" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~MarcusKorea/117.embed"></iframe>
+            </div>
           </div>
+          <!-- TWEETS PROP -->
+          <div class="col-lg-6 col-sm-12">
+            <iframe width="500" height="500" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~MarcusKorea/119.embed"></iframe>
         </div>
-        <div class="col-6">
-          <div class="box" style = "background-color: palegoldenrod;">
-            <p style="color: black;">Tableau Graph 2 (proportions of tweets)</p>
+          <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <div  style = "background-color: palegoldenrod;">
+                    <p class = "p1" style="color: black;">Lorem ipsum dolor sit amet, cu vim exerci graece, per no mandamus consequat deseruisse. Eos scribentur repudiandae ut, no his dico verterem probatus, eius movet voluptaria usu te. Id suas eirmod eam, usu ne ipsum platonem. Erroribus adipiscing ex per, iudico erroribus dissentias has at, vocibus convenire est te. Facete efficiendi ut his.
+                    Est in veri explicari, id vitae veniam meliore nec. Justo mollis integre te vel, cum mediocrem necessitatibus ex. Ad tale epicuri tacimates est. Instructior definitionem an pro, eripuit volumus salutandi sit cu, odio perpetua persecuti vis in.</p>
+                </div>
+            </div>
           </div>
-        </div>
       </div>
     </div>
     
-    <!-- Plotly graphs -->
-    <div class="plot_cont container">
-      <div class="row g-0">
-        <div class="col-6">
-          <div class="box" style = "background-color: palegreen;">
-            <p style="color: black;">Plotly Graph 1 (avg word length)</p>
+    <div class="row g-0">
+      <!-- AVG TITLE LENGTH -->
+      <div class="col-lg-6 col-sm-12">
+        <iframe width="500" height="500" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~MarcusKorea/121.embed"></iframe>
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        <!-- AVG BODY LENGTH -->
+        <iframe width="500" height="500" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~MarcusKorea/133.embed"></iframe>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+          <div  style = "background-color: palegoldenrod;">
+              <p class = "p1" style="color: black;">Lorem ipsum dolor sit amet, cu vim exerci graece, per no mandamus consequat deseruisse. Eos scribentur repudiandae ut, no his dico verterem probatus, eius movet voluptaria usu te. Id suas eirmod eam, usu ne ipsum platonem. Erroribus adipiscing ex per, iudico erroribus dissentias has at, vocibus convenire est te. Facete efficiendi ut his.
+              Est in veri explicari, id vitae veniam meliore nec. Justo mollis integre te vel, cum mediocrem necessitatibus ex. Ad tale epicuri tacimates est. Instructior definitionem an pro, eripuit volumus salutandi sit cu, odio perpetua persecuti vis in.</p>
           </div>
-        </div>
-        <div class="col-6">
-          <div class="box" style = "background-color: paleturquoise;">
-            <p style="color: black;">Plotly Graph 2 (word length / body length)</p>
-          </div>
-        </div>
       </div>
     </div>
     
-    <!-- R Graphs -->
-    <div class=" r_cont container">
-      <div class="row g-0">
-        <div class="col-6">
-          <div class="box" style = "background-color: lightsalmon;">
-            <p style="color: black;">R Graph 1 (Distribution)</p>
+ 
+    <div class="row g-0">
+      <!-- AVG TITLE LENGTH DIST -->
+      <div class="col-lg-12 col-sm-12">
+        <iframe width="1000" height="500" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~MarcusKorea/124.embed"></iframe>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+          <div  style = "background-color: palegoldenrod;">
+              <p class = "p1" style="color: black;">Lorem ipsum dolor sit amet, cu vim exerci graece, per no mandamus consequat deseruisse. Eos scribentur repudiandae ut, no his dico verterem probatus, eius movet voluptaria usu te. Id suas eirmod eam, usu ne ipsum platonem. Erroribus adipiscing ex per, iudico erroribus dissentias has at, vocibus convenire est te. Facete efficiendi ut his.
+              Est in veri explicari, id vitae veniam meliore nec. Justo mollis integre te vel, cum mediocrem necessitatibus ex. Ad tale epicuri tacimates est. Instructior definitionem an pro, eripuit volumus salutandi sit cu, odio perpetua persecuti vis in.</p>
           </div>
-        </div>
-        <div class="col-6">
-          <div class="box" style = "background-color: lightskyblue;">
-            <p style="color: black;">R Graph 2 (Distribution)</p>
+      </div>
+    </div>
+
+    <div class="row g-0">
+      <!-- AVG TITLE LENGTH -->
+      <div class="col-lg-6 col-sm-12">
+        <iframe width="500" height="500" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~MarcusKorea/121.embed"></iframe>
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        <!-- AVG BODY LENGTH -->
+        <iframe width="500" height="500" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~MarcusKorea/133.embed"></iframe>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+          <div  style = "background-color: palegoldenrod;">
+              <p class = "p1" style="color: black;">Lorem ipsum dolor sit amet, cu vim exerci graece, per no mandamus consequat deseruisse. Eos scribentur repudiandae ut, no his dico verterem probatus, eius movet voluptaria usu te. Id suas eirmod eam, usu ne ipsum platonem. Erroribus adipiscing ex per, iudico erroribus dissentias has at, vocibus convenire est te. Facete efficiendi ut his.
+              Est in veri explicari, id vitae veniam meliore nec. Justo mollis integre te vel, cum mediocrem necessitatibus ex. Ad tale epicuri tacimates est. Instructior definitionem an pro, eripuit volumus salutandi sit cu, odio perpetua persecuti vis in.</p>
           </div>
-        </div>
       </div>
     </div>
     
@@ -112,7 +147,6 @@
         <li class="nav-item"><a href="{{url_for('index')}}" class="nav-link px-2 text-muted">Predict Fake News</a></li>
         <li class ="nav-item"><a class = "nav-link px-2 text-muted" href = "{{url_for('bta')}}">Behind the App</a></li>
         <li class="nav-item"><a href="{{url_for('analysis')}}" class="nav-link px-2 text-muted">Analysis</a></li>
-        <li class="nav-item"><a href="{{url_for('code_for_nerds')}}" class="nav-link px-2 text-muted">Code for Nerds</a></li>
         <li class="nav-item"><a href="{{url_for('meet_the_team')}}" class="nav-link px-2 text-muted">Meet the Team</a></li>
       </ul>
       <a href = "{{url_for('analysis')}}"> <p class="text-center text-muted">
